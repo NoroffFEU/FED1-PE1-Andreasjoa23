@@ -1,0 +1,93 @@
+@import url(/css/style.css);
+
+body {
+    background-color: #d9d9d9;
+}
+
+.add-post {
+    text-align: center;
+    position: relative;
+    z-index: 900; /* Ensure the button is below the header */
+}
+
+.add-post-button-container {
+    background-color: #ffffff;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-post-button {
+    font-size: 60px;
+    background-color: #fff;
+    color: #000000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 60px;
+    cursor: pointer;
+    border: 5px solid #000;
+    display: inline-block;
+}
+
+.add-post-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style for the container */
+.container {
+    max-width: 600px;
+    margin: 150px auto 50px; /* Adjust this margin to leave space for the header */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.form-group textarea {
+    height: 150px;
+}
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn.delete {
+    background-color: #8b0000;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn.delete:hover {
+    background-color: #800000;
+}
