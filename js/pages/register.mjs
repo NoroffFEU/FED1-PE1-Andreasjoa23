@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 email: emailInput.value,
                 password: passwordInput.value
             };
-
+            
             fetch("https://v2.api.noroff.dev/auth/register", {
                 method: 'POST',
                 headers: {

@@ -5,56 +5,59 @@ document.addEventListener('DOMContentLoaded', function() {
     const errorContainer = document.getElementById('error-container');
     const notificationContainer = document.getElementById('notification-container');
 
-    loginForm.addEventListener('submit', function(event) {
+    loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        let errors = [];
+        const formData = {
+            email: emailInput.value.trim(),
+            password: passwordInput.value.trim()
+        };
 
-        if (!emailInput.value.trim()) {
-            errors.push('Email is required.');
+        if (!formData.email || !formData.password) {
+            errorContainer.innerHTML = '<p>Email and password are required.</p>';
+            return;
         }
 
-        if (!passwordInput.value.trim()) {
-            errors.push('Password is required.');
-        }
-
-        if (errors.length > 0) {
-            errorContainer.innerHTML = '<ul>' + errors.map(error => `<li>${error}</li>`).join('') + '</ul>';
-        } else {
-            const formData = {
-                email: emailInput.value,
-                password: passwordInput.value
-            };
-
-            fetch("https://v2.api.noroff.dev/auth/login", {
+        try {
+            const response = await fetch("https://v2.api.noroff.dev/auth/login", {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json',
                 },
                 body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-
-                localStorage.setItem('token', data.token);
-
-                notificationContainer.innerHTML = '<p>Login successful. Welcome!</p>';
-
-                setTimeout(() => {
-                    notificationContainer.innerHTML = '';
-                }, 5000);
-
-                //window.location.href = "../post/edit.html";
-            })
-            .catch((error) => {
-                console.error('error: ', error);
-                errorContainer.innerHTML = '<p>Invalid email or password.</p>';
             });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Network response was not ok');
+            }
+
+            const data = await response.json();
+            const accessToken = data.data.accessToken;
+            const username = data.data.name; 
+
+            if (!accessToken) {
+                throw new Error('Token not found in response');
+            }
+
+            localStorage.setItem('token', accessToken);
+            
+            const userData = {
+                email: formData.email,
+                password: formData.password,
+                username: username
+            };
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            notificationContainer.innerHTML = '<p>Login successful. Welcome!</p>';
+            setTimeout(() => {
+                notificationContainer.innerHTML = '';
+            }, 5000);
+
+            // window.location.href = "../post/edit.html";
+        } catch (error) {
+            console.error('Error:', error);
+            errorContainer.innerHTML = `<p>${error.message}</p>`;
         }
     });
 });
