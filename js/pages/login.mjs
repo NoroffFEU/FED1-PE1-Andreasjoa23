@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loginForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
+        errorContainer.innerHTML = ''; 
+        notificationContainer.innerHTML = ''; 
+
         const formData = {
             email: emailInput.value.trim(),
             password: passwordInput.value.trim()
@@ -34,27 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const data = await response.json();
             const accessToken = data.data.accessToken;
-            const username = data.data.name; 
+            const username = data.data.name;
 
             if (!accessToken) {
                 throw new Error('Token not found in response');
             }
 
-            localStorage.setItem('token', accessToken);
-            
-            const userData = {
+            const userInfo = {
                 email: formData.email,
-                password: formData.password,
-                username: username
+                username: username,
+                accessToken: accessToken
             };
-            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
-            notificationContainer.innerHTML = '<p>Login successful. Welcome!</p>';
-            setTimeout(() => {
-                notificationContainer.innerHTML = '';
-            }, 5000);
+            notificationContainer.innerHTML = '<p>Welcome to my house</p>';
 
-            // window.location.href = "../post/edit.html";
         } catch (error) {
             console.error('Error:', error);
             errorContainer.innerHTML = `<p>${error.message}</p>`;

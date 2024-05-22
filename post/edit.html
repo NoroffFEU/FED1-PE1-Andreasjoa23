@@ -6,6 +6,8 @@
     <link rel="icon" href="/pictures/Movienight.png">
     <title>Movie Night</title>
     <link rel="stylesheet" href="/css/edit.css">
+    <script type="module" src="/js/components/admin.mjs"></script>
+    <script type="module" src="/js/pages/post-edit.mjs"></script>
 </head>
 <body>
     <header>
@@ -21,10 +23,8 @@
         </nav>
     </header>
     <main>
-        <div class="add-post">
-            <div class="add-post-button-container">
-                <span class="add-post-button">+</span>
-            </div>
+        <div id="current-image-container">
+            <img id="current-image" src="" alt="Current post image">
         </div>
         <div class="container">
             <div class="form-group">
@@ -38,11 +38,19 @@
                         <label for="post-content">Content:</label>
                         <textarea id="post-content" name="post-content" placeholder="Write your post content here" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="post-image-url">Image URL:</label>
+                        <input type="text" id="post-image-url" name="post-image-url" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="post-image-alt">Image Alt Text:</label>
+                        <input type="text" id="post-image-alt" name="post-image-alt" placeholder="Enter image alt text">
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn" id="save-button">Save</button>
+                        <button type="button" class="btn delete" id="delete-btn">Delete</button>
+                    </div>
                 </form>
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn">Save</button>
-                <button type="button" class="btn delete" id="delete-btn">Delete</button>
             </div>
         </div>
     </main>

@@ -1,37 +1,39 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const postTitle = urlParams.get('title');
-    const postBody = urlParams.get('body');
-    const imageUrl = urlParams.get('imageUrl');
-    const created = urlParams.get('created');
-    const updated = urlParams.get('updated');
-    const authorName = urlParams.get('authorName');
+    const post = JSON.parse(localStorage.getItem('post'));
+    if (post) {
+        displayPost(post);
+    } else {
+        console.error('No post data found in local storage');
+    }
 
-    const postDetailContainer = document.getElementById("postDetail");
+    function displayPost(post) {
+        const postContainer = document.getElementById("postDetail");
 
-    const imageTitleContainer = document.createElement("div");
-    imageTitleContainer.classList.add("image-title-container");
+        const media = document.createElement("img");
+        media.classList.add("post-media");
+        media.src = post.media.url;
+        media.alt = post.media.alt;
 
-    const image = document.createElement("img");
-    image.src = imageUrl;
-    image.alt = postTitle;
+        const title = document.createElement("h2");
+        title.classList.add("post-title");
+        title.textContent = post.title;
 
-    const title = document.createElement("h1");
-    title.textContent = postTitle;
+        const body = document.createElement("p");
+        body.classList.add("post-body");
+        body.textContent = post.body;
 
-    const body = document.createElement("p");
-    body.textContent = postBody;
+        const author = document.createElement("p");
+        author.classList.add("post-author");
+        author.textContent = `Author: ${post.author.name}`;
 
-    const createdElement = document.createElement("post-info");
-    createdElement.textContent = `Posted: ${created}`;
+        const created = document.createElement("p");
+        created.classList.add("post-created");
+        created.textContent = `Created: ${post.created}`;
 
-    const updatedElement = document.createElement("post-info");
-    updatedElement.textContent = `Updated: ${updated}`;
+        const updated = document.createElement("p");
+        updated.classList.add("post-updated");
+        updated.textContent = `Updated: ${post.updated}`;
 
-    const author = document.createElement("post-info");
-    author.textContent = `Posted by: ${authorName}`;
-
-    imageTitleContainer.append(image, title);
-    postDetailContainer.append(imageTitleContainer, author, createdElement, updatedElement, body);
+        postContainer.append(media, title, body, author, created, updated);
+    }
 });

@@ -2,7 +2,7 @@ import { fetchData } from '../components/fetch.mjs';
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
-        const data = await fetchData();
+        const data = await fetchData('https://v2.api.noroff.dev/blog/posts/Alfred', 'GET', null, false);
         console.log("Blog Posts", data);
 
         populateCarousel(data);
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             slide.innerHTML = `
                 <img class="post-media" src="${post.media.url}" alt="${post.media.alt}">
                 <h2 class="post-title">${post.title}</h2>
-                <a href="post/index.html?id=${post.id}&title=${encodeURIComponent(post.title)}&body=${encodeURIComponent(post.body)}&imageUrl=${encodeURIComponent(post.media.url)}&created=${encodeURIComponent(post.created)}&updated=${encodeURIComponent(post.updated)}&authorName=${encodeURIComponent(post.author.name)}" class="read-more-button">Read More</a>`;
+                <a href="post/index.html?id=${post.id}" class="read-more-button" data-post-id="${post.id}">Read More</a>`;
         });
 
         slides[0].style.display = 'block';
@@ -66,11 +66,32 @@ document.addEventListener("DOMContentLoaded", async function() {
             const readMoreLink = document.createElement("a");
             readMoreLink.textContent = "Read More";
             readMoreLink.classList.add("read-more-button");
-
-            readMoreLink.href = `post/index.html?id=${post.id}&title=${encodeURIComponent(post.title)}&body=${encodeURIComponent(post.body)}&imageUrl=${encodeURIComponent(post.media.url)}&created=${encodeURIComponent(post.created)}&updated=${encodeURIComponent(post.updated)}&authorName=${encodeURIComponent(post.author.name)}`;
+            readMoreLink.href = "post/index.html?id=" + post.id;
+            readMoreLink.dataset.postId = post.id;
+            readMoreLink.addEventListener("click", () => savePostDataToLocalStorage(post));
 
             postCard.append(media, title, readMoreLink);
+
+            if (localStorage.getItem('userInfo')) {
+                const editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+                editButton.classList.add("edit-button");
+                editButton.addEventListener("click", () => {
+                    savePostDataToLocalStorage(post);
+                    redirectToEditPage(post.id);
+                });
+                postCard.appendChild(editButton);
+            }
+
             movieListContainer.appendChild(postCard);
         });
+    }
+
+    function savePostDataToLocalStorage(post) {
+        localStorage.setItem('post', JSON.stringify(post));
+    }
+
+    function redirectToEditPage(postId) {
+        window.location.href = `post/edit.html?postId=${postId}`;
     }
 });

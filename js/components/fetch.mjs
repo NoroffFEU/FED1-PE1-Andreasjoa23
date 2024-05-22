@@ -1,26 +1,48 @@
-export async function fetchData() {
-  const url = 'https://v2.api.noroff.dev/blog/posts/Alfred';
-  const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGV0ZXJKYWNrc29uIiwiZW1haWwiOiJQZXRlcl9KQHN0dWQubm9yb2ZmLm5vIiwiaWF0IjoxNzE0Njc5NzE1fQ.N13nzN0e0VIEVRGQZaEqYgvTRHpP4JDRr0Q3we3OST8';
+export async function fetchData(url, method, body = null, requireAuth = true) {
+    let accessToken = '';
 
-  try {
-      const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + key
-          }
-      });
+    if (requireAuth) {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-      if (!response.ok) {
-          throw new Error('Network response not OK');
-      }
+        if (userInfo && userInfo.accessToken) {
+            accessToken = userInfo.accessToken;
+        } else {
+            console.error("Access token not found in localStorage.");
+            throw new Error("Access token not found.");
+        }
+    }
+    
+    const headers = {
+        'Content-Type': 'application/json'
+    };
 
-      const data = await response.json();
-      return data.data;
-  } catch (error) {
-      console.error('Error:', error);
-      throw error;
-  }
+    if (requireAuth) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+
+    const fetchOptions = {
+        method: method,
+        headers: headers
+    };
+
+    if (body && method !== 'GET') {
+        fetchOptions.body = JSON.stringify(body);
+    }
+
+    try {
+        const response = await fetch(url, fetchOptions);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`HTTP Error: ${response.status}`, errorData);
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.data;
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw error;
+    }
 }
-
-// data.sort((a, b) => new Date(b.created) - new Date(a.created));
