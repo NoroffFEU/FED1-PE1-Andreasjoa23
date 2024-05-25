@@ -58,7 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-
+const eyeIcon = document.getElementById('eyeIcon');
+showPasswordCheckbox.addEventListener('change', function() {
+    const passwordType = showPasswordCheckbox.checked ? 'text' : 'password';
+    passwordInput.type = passwordType;
+    confirmPasswordInput.type = passwordType;
+    eyeIcon.classList.toggle('fa-eye-slash', !showPasswordCheckbox.checked);
+    eyeIcon.classList.toggle('fa-eye', showPasswordCheckbox.checked);
+});
     function validateEmail(email) {
         const emailRegex = /^[^\s@]+@stud\.noroff\.no$/;
         return emailRegex.test(email);
