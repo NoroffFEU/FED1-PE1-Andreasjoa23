@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (userInfo && userInfo.accessToken) {
             loginNavLink.textContent = 'Logout';
-            loginNavLink.href = '#';
-            registerNavLink.textContent = 'Edit';
-            registerNavLink.href = '/post/edit.html';
+            registerNavLink.textContent = 'Create Post';
+            registerNavLink.href = '/post/create.html';
 
             loginNavLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 logout();
             });
+
         } else {
             loginNavLink.textContent = 'Login';
             loginNavLink.href = '/account/login.html';
@@ -23,14 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function logout() {
+    const logout = () => { 
         localStorage.removeItem('userInfo');
-
-        loginNavLink.textContent = 'Login';
-        loginNavLink.href = '/account/login.html';
-        registerNavLink.textContent = 'Register';
-        registerNavLink.href = '/account/register.html';
-    }
-
+        if (window.location.pathname === '/index.html') { 
+            window.location.href = '/index.html';
+        } else {
+            window.location.href = '/post/index.html';
+        }
+    };
     updateNavBar();
 });

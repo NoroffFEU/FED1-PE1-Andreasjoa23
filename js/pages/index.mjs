@@ -20,10 +20,14 @@ document.addEventListener("DOMContentLoaded", async function() {
             const slide = slides[index];
             slide.innerHTML = `
                 <img class="post-media" src="${post.media.url}" alt="${post.media.alt}">
-                <h2 class="post-title">${post.title}</h2>
+                <div class="carousel-title">${post.title}</div>
                 <a href="post/index.html?id=${post.id}" class="read-more-button" data-post-id="${post.id}">Read More</a>`;
+        
+            slide.querySelector('.read-more-button').addEventListener('click', () => {
+                savePostDataToLocalStorage(post);
+            });
         });
-
+        
         slides[0].style.display = 'block';
 
         const prevButton = document.querySelector('.prev-button');

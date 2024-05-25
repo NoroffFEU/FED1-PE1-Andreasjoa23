@@ -1,6 +1,5 @@
 export async function fetchData(url, method, body = null, requireAuth = true) {
     let accessToken = '';
-
     if (requireAuth) {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -37,9 +36,14 @@ export async function fetchData(url, method, body = null, requireAuth = true) {
             console.error(`HTTP Error: ${response.status}`, errorData);
             throw new Error(`HTTP Error: ${response.status}`);
         }
-
-        const data = await response.json();
-        return data.data;
+        
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await response.json();
+            return data.data;
+        } else {
+            return null;
+        }
 
     } catch (error) {
         console.error("Fetch error:", error);

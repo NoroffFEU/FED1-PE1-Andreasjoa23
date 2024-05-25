@@ -1,18 +1,22 @@
 body {
     margin: 0;
+    padding: 0;
 }
 
-/* Header styles */
+
+
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 10px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    background-color: black;
+}
+
+.logo {
+    flex-grow: 1;
 }
 
 .logo img {
@@ -28,17 +32,13 @@ nav ul {
 
 nav ul li {
     margin-right: 50px;
-    font-size: 30px;
+    font-size: 2em;
 }
 
 nav ul li a {
     text-decoration: none;
     font-weight: bold;
     color: rgb(188, 154, 17);
-}
-
-main {
-    flex-grow: 1;
 }
 
 /* Footer styles */
@@ -75,4 +75,20 @@ footer {
 .footer-nav ul li a {
     text-decoration: none;
     color: black;
+}
+
+@media screen and (max-width: 700px) {
+    .logo,
+    nav {
+        width: 100%;
+        text-align: center; 
+    }
+
+    nav ul {
+        justify-content: center; 
+    }
+
+    nav ul li {
+        margin-right: 10px; 
+    }
 }

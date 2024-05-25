@@ -13,13 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let errors = [];
 
         if (!validateEmail(emailInput.value)) {
-            errors.push('Please enter a valid email address.');
+            errors.push('Please enter a valid stud.noroff.no email address.');
         }
-
-        if (usernameInput.value.length < 6) {
-            errors.push('Username must be at least 6 characters long.');
+        if (!validateUsername(usernameInput.value)) {
+            errors.push('Username must be at least 6 characters long and can only contain letters, numbers, and underscores.');
         }
-
         if (passwordInput.value.length < 8) {
             errors.push('Password must be at least 8 characters long.');
         }
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput.value !== confirmPasswordInput.value) {
             errors.push('Passwords do not match.');
         }
-
         if (errors.length > 0) {
             errorContainer.innerHTML = '<ul>' + errors.map(error => `<li>${error}</li>`).join('') + '</ul>';
         } else {
@@ -54,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 console.log('success: ', data);
+                redirectToLogin();
             })
             .catch((error) => {
                 console.error('error: ', error);
@@ -62,13 +60,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@stud\.noroff\.no$/;
         return emailRegex.test(email);
     }
 
+    function validateUsername(username) {
+        const usernameRegex = /^[a-zA-Z0-9_]{6,}$/;
+        return usernameRegex.test(username);
+    }
+
+    
     showPasswordCheckbox.addEventListener('change', function() {
         const passwordType = showPasswordCheckbox.checked ? 'text' : 'password';
         passwordInput.type = passwordType;
         confirmPasswordInput.type = passwordType;
     });
 });
+function redirectToLogin() {
+    window.location.href = 'login.html';
+}

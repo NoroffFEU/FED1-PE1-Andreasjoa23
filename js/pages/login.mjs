@@ -49,8 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 accessToken: accessToken
             };
             localStorage.setItem('userInfo', JSON.stringify(userInfo));
-
-            notificationContainer.innerHTML = '<p>Welcome to my house</p>';
+            window.location.href = '/index.html';
 
         } catch (error) {
             console.error('Error:', error);

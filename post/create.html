@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/pictures/Movienight.png">
-    <title>Movie Night - Edit Post</title>
+    <title>Create Post - Movie Night</title>
     <link rel="stylesheet" href="/css/edit.css">
     <script type="module" src="/js/components/admin.mjs"></script>
-    <script type="module" src="/js/pages/post-edit.mjs"></script>
+    <script type="module" src="/js/pages/post-create.mjs"></script>
 </head>
 <body>
     <header>
@@ -23,10 +23,9 @@
         </nav>
     </header>
     <main>
-        <img id="image-preview" src="" alt="">
         <div class="container">
             <div class="form-group">
-                <h2>Edit Post</h2>
+                <h2>Create Post</h2>
                 <form id="post-form">
                     <div class="form-group">
                         <label for="post-title">Title:</label>
@@ -45,8 +44,8 @@
                         <input type="text" id="post-image-alt" name="post-image-alt" placeholder="Enter image alt text">
                     </div>
                     <div class="btn-container">
-                        <button type="submit" class="btn" id="save-button">Save</button>
-                        <button type="button" class="btn delete" id="delete-btn">Delete</button>
+                        <button type="submit" class="btn" id="save-button">Create</button>
+                        <button type="button" class="btn" id="cancel-button">Cancel</button>
                     </div>
                 </form>
             </div>
