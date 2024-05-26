@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     } catch (error) {
         console.error('Error:', error);
     }
-    
     function populateCarousel(posts) {
         const carouselContainer = document.querySelector('.carousel-container');
         const slides = carouselContainer.querySelectorAll('.carousel-slide');
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             readMoreLink.classList.add("read-more-button");
             readMoreLink.href = "post/index.html?id=" + post.id;
             readMoreLink.dataset.postId = post.id;
-            readMoreLink.addEventListener("click", (event) => {
+            readMoreLink.addEventListener("click", () => {
                 savePostDataToLocalStorage(post);
                 redirectToPostPage(post.id);
             });
@@ -107,10 +106,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function redirectToPostPage(postId) {
-        window.location.href = `post/index.html?id=${postId}`;
+        window.location.href = `../post/index.html?id=${postId}`;
     }
 
     function redirectToEditPage(postId) {
-        window.location.href = `post/edit.html?postId=${postId}`;
+        window.location.href = `../post/edit.html?postId=${postId}`;
     }
 });

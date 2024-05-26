@@ -71,6 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function redirectToEditPage(postId) {
-        window.location.href = `edit.html?postId=${postId}`;
+        window.location.href = `../edit.html?postId=${postId}`;
     }
 });

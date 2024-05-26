@@ -57,7 +57,7 @@ async function deletePost(postId) {
 }
 
 function redirectToPostIndex() {
-    window.location.href = '/index.html';
+    window.location.href = '../index.html';
 }
 
 document.getElementById('post-form').addEventListener('submit', async (event) => {

@@ -84,5 +84,5 @@ showPasswordCheckbox.addEventListener('change', function() {
     });
 });
 function redirectToLogin() {
-    window.location.href = 'login.html';
+    window.location.href = './login.html';
 }

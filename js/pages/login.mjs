@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 accessToken: accessToken
             };
             localStorage.setItem('userInfo', JSON.stringify(userInfo));
-            window.location.href = '/index.html';
+            window.location.href = '../index.html';
 
         } catch (error) {
             console.error('Error:', error);
