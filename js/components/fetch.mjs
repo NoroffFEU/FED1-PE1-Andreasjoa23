@@ -10,7 +10,6 @@ export async function fetchData(url, method, body = null, requireAuth = true) {
             throw new Error("Access token not found.");
         }
     }
-    
     const headers = {
         'Content-Type': 'application/json'
     };

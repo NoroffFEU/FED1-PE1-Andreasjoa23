@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const cancelButton = document.getElementById('cancel-button');
     const postImageURL = document.getElementById('post-image-url');
 
+
     postImageURL.addEventListener('change', updateImagePreview);
 
     postForm.addEventListener('submit', async (event) => {

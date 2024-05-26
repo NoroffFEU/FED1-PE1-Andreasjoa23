@@ -1,5 +1,6 @@
 import { fetchData } from "../components/fetch.mjs";
 
+
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
@@ -79,7 +80,7 @@ document.getElementById('post-form').addEventListener('submit', async (event) =>
 
 document.getElementById('delete-btn').addEventListener('click', async () => {
     const postId = new URLSearchParams(window.location.search).get('postId');
-    if (confirm('Are you sure you want to delete this post?')) {
+    if (confirm('Are you sure you wanna terminator this post?')) {
         await deletePost(postId);
     }
 });

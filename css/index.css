@@ -167,7 +167,7 @@
 }
 
 .edit-button:hover {
-  background-color: #632121;
+  background-color: #17d586;
 }
 
 @media screen and (max-width: 1400px) {
@@ -193,7 +193,6 @@
     width: 90%;
     padding-top: 50px;
   }
-
   .prev-button, .next-button {
     font-size: 20px;
     padding: 5px 10px;
@@ -202,7 +201,6 @@
     font-size: 3vw;
     bottom: 30px;
   }
-
 }
 
 @media (max-width: 480px) {
