@@ -2,15 +2,18 @@
 
 .carousel-container {
   position: relative;
-  width: 60%;
+  width: 80%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 50px;
   overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
 .carousel-slide {
   display: none;
-  height: 700px;
+  height: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -23,7 +26,7 @@
 
 .prev-button, .next-button {
   position: absolute;
-  top: 450px;
+  top: 60%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -41,25 +44,94 @@
 }
 
 .prev-button {
-  left: 20px;
+  left: 10px;
 }
 
 .next-button {
-  right: 20px;
+  right: 10px;
 }
 
 .carousel-title {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 40px); 
   padding: 10px;
-  font-size: 35px;
-  color: rgb(255, 255, 255);
+  font-size: 1.5vw; 
+  color: #fff;
   font-weight: bold;
   text-align: center;
-  position: absolute;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.read-more-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 1.5vw;
+  border-radius: 8px;
+}
+
+.headline {
+  text-align: center;
+  background-color: #222;
+  padding: 10px;
+  margin: 50px 0 20px 0;
+}
+
+.headline h2 {
+  color: white;
+  font-size: 1.2vw;
+}
+
+.movie-list {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post-card {
+  position: relative;
+  width: calc(50% - 20px);
+  margin: 20px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid #000;
+  padding: 0;
+  cursor: pointer;
+}
+
+.post-card * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.post-media {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.post-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  text-align: center;
 }
 
 .read-more-button {
@@ -77,96 +149,72 @@
 }
 
 .read-more-button:hover {
-  background-color: #0056b3;
-}
-
-.headline {
-    text-align: center;
-    background-color: #000000;
-    padding: 20px;
-    margin: 50px 0 20px 0;
-}
-
-.headline h2 {
-    color: white;
-    font-size: 30px;
-}
-
-.movie-list {
-    width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.post-card {
-    position: relative;
-    width: calc(33.33% - 20px);
-    margin: 20px 0; 
-    box-sizing: border-box;
-    overflow: hidden;
-    border: 2px solid #000;
-    padding: 0;
-}
-
-.post-card * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.post-media {
-    display: block;
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.post-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-}
-
-.read-more-button {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    padding: 5px 10px;
-    text-decoration: none;
-    font-size: 20px;
-    border-radius: 8px;
-}
-
-.read-more-button:hover {
-    background-color: #d9d9d9;
+  background-color: #d9d9d9;
 }
 
 .edit-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .edit-button:hover {
-    background-color: #632121;
+  background-color: #632121;
+}
+
+@media screen and (max-width: 1400px) {
+  .carousel-title {
+    font-size: 2vw;
+    bottom: 40px;
+  }
+  .post-card {
+    width: 60%;
+    margin: 20px auto;
+  }
+  .read-more-button {
+    font-size: 2vw;
+    padding: 5px 8px;
+  }
+  .headline h2 {
+    font-size: 1.8vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 90%;
+    padding-top: 50px;
+  }
+
+  .prev-button, .next-button {
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+  .carousel-title {
+    font-size: 3vw;
+    bottom: 30px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    width: 95%;
+    padding-top: 30px;
+  }
+
+  .read-more-button {
+    font-size: 3vw;
+  }
+  .edit-button {
+    font-size: 3vw;
+  }
 }

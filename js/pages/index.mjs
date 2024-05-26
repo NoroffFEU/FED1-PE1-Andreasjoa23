@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     } catch (error) {
         console.error('Error:', error);
     }
-
+    
     function populateCarousel(posts) {
         const carouselContainer = document.querySelector('.carousel-container');
         const slides = carouselContainer.querySelectorAll('.carousel-slide');
@@ -23,8 +23,12 @@ document.addEventListener("DOMContentLoaded", async function() {
                 <div class="carousel-title">${post.title}</div>
                 <a href="post/index.html?id=${post.id}" class="read-more-button" data-post-id="${post.id}">Read More</a>`;
         
-            slide.querySelector('.read-more-button').addEventListener('click', () => {
-                savePostDataToLocalStorage(post);
+            slide.addEventListener('click', (event) => {
+                if (event.target.classList.contains('read-more-button')) {
+                    savePostDataToLocalStorage(post);
+                    redirectToPostPage(post.id);
+                }
+                event.stopPropagation();
             });
         });
         
@@ -50,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async function() {
             slides[currentIndex].style.display = 'block';
         }
     }
-
     function populateBlogList(posts) {
         const movieListContainer = document.getElementById("movieList");
 
@@ -72,7 +75,15 @@ document.addEventListener("DOMContentLoaded", async function() {
             readMoreLink.classList.add("read-more-button");
             readMoreLink.href = "post/index.html?id=" + post.id;
             readMoreLink.dataset.postId = post.id;
-            readMoreLink.addEventListener("click", () => savePostDataToLocalStorage(post));
+            readMoreLink.addEventListener("click", (event) => {
+                savePostDataToLocalStorage(post);
+                redirectToPostPage(post.id);
+            });
+
+            media.addEventListener('click', () => {
+                savePostDataToLocalStorage(post);
+                redirectToPostPage(post.id);
+            });
 
             postCard.append(media, title, readMoreLink);
 
@@ -93,6 +104,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     function savePostDataToLocalStorage(post) {
         localStorage.setItem('post', JSON.stringify(post));
+    }
+
+    function redirectToPostPage(postId) {
+        window.location.href = `post/index.html?id=${postId}`;
     }
 
     function redirectToEditPage(postId) {
