@@ -96,6 +96,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .post-card {
@@ -186,8 +187,11 @@
   .headline h2 {
     font-size: 1.8vw;
   }
-}
 
+  .post-media {
+    height: 30vw;
+  }
+}
 @media (max-width: 768px) {
   .carousel-container {
     width: 90%;
@@ -201,14 +205,18 @@
     font-size: 3vw;
     bottom: 30px;
   }
+  .post-title{
+    font-size: 3.5vw;
+  }
+  .movie-list {
+    max-width: 80%;
+  }
 }
-
 @media (max-width: 480px) {
   .carousel-container {
     width: 95%;
     padding-top: 30px;
   }
-
   .read-more-button {
     font-size: 3vw;
   }
