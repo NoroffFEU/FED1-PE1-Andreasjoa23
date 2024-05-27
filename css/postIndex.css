@@ -1,17 +1,11 @@
 @import url(./style.css);
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 #postDetail {
-    max-width: 70%;
+    max-width: 80%;
     margin: 0 auto;
     text-align: center;
 }
+
 .post-title {
     font-size: 2em;
     margin-top: 50px;
@@ -20,29 +14,36 @@ main {
 .post-media {
     max-width: 100%;
     width: 1200px;
-    height: 400px;
+    height: 500px;
     max-height: 100%;
     object-fit: cover;
     margin-bottom: 10px;
     border-radius: 15px;
 }
 
-.post-body {
-    font-size: 1.8em;
-    line-height: 1.8;
-}
-
 .creator-details {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     font-size: 1em;
 }
 
 .creator-details p {
     margin-right: 20px;
     margin-bottom: 10px;
-    flex: 1 1 auto;
-    max-width: 100%;
+}
+
+.post-author, 
+.post-created, 
+.post-updated {   
+    align-items: center;
+}
+
+.post-body {
+    font-size: 1.8em;
+    line-height: 1.8;
+    width: 70%;
+    margin: 20px auto;
 }
 
 .edit-button {
@@ -62,6 +63,17 @@ main {
 
 .edit-button:hover {
     background-color: #45a049;
+}
+
+@media screen and (max-width: 1000px) {
+    #postDetail {
+        max-width: 100%;
+    }
+    .post-media {
+        width: 90%;
+    }
+    
+
 }
 @media screen and (max-width: 800px) {
     .post-title {
