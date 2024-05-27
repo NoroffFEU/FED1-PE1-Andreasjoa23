@@ -106,10 +106,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function redirectToPostPage(postId) {
-        window.location.href = `./post/index.html?id=${postId}`;
+        window.location.href = `/post/index.html?id=${postId}`;
     }
 
     function redirectToEditPage(postId) {
-        window.location.href = `./post/edit.html?postId=${postId}`;
+        window.location.href = `/post/edit.html?postId=${postId}`;
     }
 });
