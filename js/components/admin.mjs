@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const logout = () => { 
         localStorage.removeItem('userInfo');
-        (window.location.pathname !== '/index.html'); {
-            window.location.href = '/index.html';
+        (window.location.pathname !== '../index.html'); {
+            window.location.href = '../index.html';
         }
     };
     updateNavBar();
