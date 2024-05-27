@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             const readMoreLink = document.createElement("a");
             readMoreLink.textContent = "Read More";
             readMoreLink.classList.add("read-more-button");
-            readMoreLink.href = "post/index.html?id=" + post.id;
+            readMoreLink.href = "../post/index.html?id=" + post.id;
             readMoreLink.dataset.postId = post.id;
             readMoreLink.addEventListener("click", () => {
                 savePostDataToLocalStorage(post);
@@ -106,10 +106,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function redirectToPostPage(postId) {
-        window.location.href = `../post/index.html?id=${postId}`;
+        window.location.href = `./post/index.html?id=${postId}`;
     }
 
     function redirectToEditPage(postId) {
-        window.location.href = `../post/edit.html?postId=${postId}`;
+        window.location.href = `./post/edit.html?postId=${postId}`;
     }
 });
