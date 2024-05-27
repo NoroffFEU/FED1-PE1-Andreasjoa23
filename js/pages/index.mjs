@@ -110,6 +110,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function redirectToEditPage(postId) {
-        window.location.href = `../post/edit.html?postId=${postId}`;
+        window.location.href = `./post/edit.html?postId=${postId}`;
     }
 });

@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const isFrontPage = !(window.location.pathname.includes("post")|| window.location.pathname.includes("account"));
     const preFix = isFrontPage? "" :"../"
 
-
-
     function updateNavBar() {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -31,6 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.removeItem('userInfo');    
         window.location.href = preFix + 'index.html';
     };
-    
+
     updateNavBar();
 });
