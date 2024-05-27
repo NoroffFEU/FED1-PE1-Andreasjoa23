@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loginNavLink = document.getElementById('loginLink');
     const registerNavLink = document.getElementById('registerLink');
+    const isFrontPage = !(window.location.pathname.includes("post")|| window.location.pathname.includes("account"));
+    const preFix = isFrontPage? "" :"../"
+
+
 
     function updateNavBar() {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -8,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (userInfo && userInfo.accessToken) {
             loginNavLink.textContent = 'Logout';
             registerNavLink.textContent = 'Create Post';
-            registerNavLink.href = './post/create.html';
+            registerNavLink.href = preFix + 'post/create.html';
 
             loginNavLink.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -17,17 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else {
             loginNavLink.textContent = 'Login';
-            loginNavLink.href = './account/login.html';
+            loginNavLink.href = preFix + 'account/login.html';
             registerNavLink.textContent = 'Register';
-            registerNavLink.href = './account/register.html';
+            registerNavLink.href = preFix + 'account/register.html';
         }
     }
 
     const logout = () => { 
-        localStorage.removeItem('userInfo');
-        (window.location.pathname !== '../index.html'); {
-            window.location.href = '/index.html';
-        }
+        localStorage.removeItem('userInfo');    
+        window.location.href = preFix + 'index.html';
     };
+    
     updateNavBar();
 });
