@@ -56,14 +56,13 @@
   width: calc(100% - 40px); 
   padding: 10px;
   font-size: 1.5vw; 
-  color: #fff;
+  color: #ffffffea;
   font-weight: bold;
   text-align: center;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
 }
-
 .read-more-button {
   position: absolute;
   bottom: 10px;
@@ -176,8 +175,11 @@
     font-size: 2vw;
     bottom: 40px;
   }
+  .movie-list {
+    max-width: 80%;
+  }
   .post-card {
-    width: 60%;
+    width: 80%;
     margin: 20px auto;
   }
   .read-more-button {
@@ -187,7 +189,6 @@
   .headline h2 {
     font-size: 1.8vw;
   }
-
   .post-media {
     height: 30vw;
   }
@@ -208,9 +209,7 @@
   .post-title{
     font-size: 3.5vw;
   }
-  .movie-list {
-    max-width: 80%;
-  }
+
 }
 @media (max-width: 480px) {
   .carousel-container {

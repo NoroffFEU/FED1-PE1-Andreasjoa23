@@ -4,6 +4,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .header-content, .footer-content {
     display: flex;
     justify-content: space-between;
@@ -14,6 +15,7 @@ body {
 .logo img {
     max-height: 150px;
 }
+
 nav ul, .footer-nav ul {
     display: flex;
     list-style: none;
@@ -21,20 +23,25 @@ nav ul, .footer-nav ul {
     margin: 0;
     font-size: 25px;
 }
+
 nav ul li, .footer-nav ul li {
     margin-left: 20px;
 }
+
 nav ul li a, .footer-nav ul li a {
     color: white;
     text-decoration: none;
     padding: 8px 12px;
 }
+
 nav ul li a:hover, .footer-nav ul li a:hover {
     background-color: #555;
     border-radius: 4px;
 }
 
-
+footer {
+    margin-top: auto;
+}
 
 .footer-content {
     color: #fff;
@@ -45,6 +52,7 @@ nav ul li a:hover, .footer-nav ul li a:hover {
 .footer-nav ul {
     justify-content: center;
 }
+
 .footer-nav ul li.separator {
     width: 1px;
     background-color: #555;

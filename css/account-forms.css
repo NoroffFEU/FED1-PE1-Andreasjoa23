@@ -22,12 +22,12 @@
     padding: 10px 40px;
     border-radius: 5px;
 }
-  
+
   form {
     text-align: left;
 }
 
-  h2 {
+  h1 {
     margin: 20px;
     font-size: 30px;
     text-align: center;
@@ -36,7 +36,7 @@
   .form-group {
     margin-bottom: 20px;
 }
-  
+
   label {
     display: block;
     margin-bottom: 5px;
@@ -61,7 +61,7 @@ button {
     margin-top: 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #0050a7;
     color: #fff;
     cursor: pointer;
 }
@@ -76,7 +76,7 @@ button {
 }
   
   a {
-    color: #007bff;
+    color: #062aaa;
 }
 
 #showPasswordCheckbox {

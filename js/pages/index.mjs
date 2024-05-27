@@ -65,11 +65,11 @@ document.addEventListener("DOMContentLoaded", async function() {
             media.src = post.media.url;
             media.alt = post.media.alt;
 
-            const title = document.createElement("h2");
+            const title = document.createElement("h1");
             title.classList.add("post-title");
             title.textContent = post.title;
 
-            const readMoreLink = document.createElement("a");
+            const readMoreLink = document.createElement("button");
             readMoreLink.textContent = "Read More";
             readMoreLink.classList.add("read-more-button");
             readMoreLink.href = "post/index.html?id=" + post.id;
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
             if (localStorage.getItem('userInfo')) {
                 const editButton = document.createElement("button");
-                editButton.textContent = "Edit";
+                editButton.textContent = "Edit post";
                 editButton.classList.add("edit-button");
                 editButton.addEventListener("click", () => {
                     savePostDataToLocalStorage(post);

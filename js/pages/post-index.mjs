@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         media.src = post.media.url;
         media.alt = post.media.alt;
 
-        const title = document.createElement("h2");
+        const title = document.createElement("h1");
         title.classList.add("post-title");
         title.textContent = post.title;
 
