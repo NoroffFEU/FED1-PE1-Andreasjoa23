@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else {
             loginNavLink.textContent = 'Login';
-            loginNavLink.href = '/account/login.html';
+            loginNavLink.href = '../account/login.html';
             registerNavLink.textContent = 'Register';
-            registerNavLink.href = '/account/register.html';
+            registerNavLink.href = '../account/register.html';
         }
     }
 
