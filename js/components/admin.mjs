@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (userInfo && userInfo.accessToken) {
             loginNavLink.textContent = 'Logout';
             registerNavLink.textContent = 'Create Post';
-            registerNavLink.href = './post/create.html';
+            registerNavLink.href = '../post/create.html';
 
             loginNavLink.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const logout = () => { 
         localStorage.removeItem('userInfo');
         (window.location.pathname !== '../index.html'); {
-            window.location.href = '../index.html';
+            window.location.href = '/index.html';
         }
     };
     updateNavBar();
