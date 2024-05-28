@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Network response was not ok');
+                if (response.status === 401) {
+                    throw new Error(errorData.message || 'Incorrect email or password.');
+                } else {
+                    throw new Error(errorData.message || 'Network response was not ok');
+                }
             }
 
             const data = await response.json();

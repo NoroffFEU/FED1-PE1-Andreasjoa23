@@ -67,7 +67,11 @@ document.addEventListener("DOMContentLoaded", function() {
             
         } catch (error) {
             console.error('Error creating post:', error);
-            alert('Failed to create post. Please try again.');
+            if (error.message.includes('403')) {
+                alert('You are not authorized to create a post. Please make sure you have the correct permissions.');
+            } else {
+                alert('Failed to create post. Please try again.');
+            }
         } finally {
             hideLoader();
         }

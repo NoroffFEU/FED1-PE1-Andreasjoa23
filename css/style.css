@@ -34,6 +34,7 @@ h1, h2 {
     padding: 10px 20px;
     background-color: #222;
 }
+
 .logo img {
     max-height: 150px;
 }
@@ -44,6 +45,7 @@ nav ul, .footer-nav ul {
     padding: 0;
     margin: 0;
     font-size: 25px;
+    cursor: pointer;
 }
 
 nav ul li, .footer-nav ul li {

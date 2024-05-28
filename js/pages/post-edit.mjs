@@ -59,15 +59,16 @@ async function updatePost(formData, postId) {
         showLoader();
         await fetchData(`https://v2.api.noroff.dev/blog/posts/Alfred/${postId}`, 'PUT', formData);
         alert('"Change is the law of life". You updated successfully!')
-        hideLoader();
         redirectToPostIndex(postId);
     } catch (error) {
         console.error('Error updating post:', error);
-        alert('Failed to update post. Please try again.');
+        if (error.message.includes('403')) {
+            hideLoader();
+            alert('You are not authorized to update this post. Please make sure you have the correct permissions.');
+        } else {
+            alert('Failed to update post. Please try again.');
+        }
     }
-}
-function redirectToPostIndex() {
-    window.location.href = '../index.html';
 }
 
 async function deletePost(postId) {
@@ -78,7 +79,12 @@ async function deletePost(postId) {
         redirectToPostIndex();
     } catch (error) {
         console.error('Error deleting post:', error);
-        alert('Failed to delete post. Please try again.');
+        if (error.message.includes('403')) {
+            hideLoader();
+            alert('You are not authorized to update this post. Please make sure you have the correct permissions.');
+        } else {
+            alert('Failed to update post. Please try again.');
+        }
     }
 }
 document.getElementById('delete-btn').addEventListener('click', async () => {
@@ -102,3 +108,7 @@ document.getElementById('post-form').addEventListener('submit', async (event) =>
     };
     await updatePost(postData, postId);
 });
+
+function redirectToPostIndex() {
+    window.location.href = '../index.html';
+}
