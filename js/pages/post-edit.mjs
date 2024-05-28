@@ -22,7 +22,7 @@ function checkAccessToken() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (!userInfo || !userInfo.accessToken) {
         alert("You are not authorized to be here. Please log in.");
-        window.location.href = '../account/login.html';
+        window.location.href = './account/login.html';
     }
 }
 checkAccessToken();
