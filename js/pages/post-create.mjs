@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const postImageURL = document.getElementById('post-image-url');
     postImageURL.addEventListener('change', updateImagePreview);
 
+    function checkAccessToken() {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userInfo || !userInfo.accessToken) {
+            alert("You are not authorized to be here. Please log in.");
+            window.location.href = '../account/login.html';
+        }
+    }
+    checkAccessToken();
+
     function updateImagePreview() {
         const imageUrl = document.getElementById('post-image-url').value;
         const imagePreview = document.getElementById('image-preview');

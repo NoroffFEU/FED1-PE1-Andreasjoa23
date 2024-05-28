@@ -18,6 +18,15 @@ document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById('post-image-url').addEventListener('input', updateImagePreview);
 });
 
+function checkAccessToken() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (!userInfo || !userInfo.accessToken) {
+        alert("You are not authorized to be here. Please log in.");
+        window.location.href = '../account/login.html';
+    }
+}
+checkAccessToken();
+
 function populateForm(postData) {
     document.getElementById("post-title").value = postData.title;
     document.getElementById("post-content").innerHTML = postData.body.replace(/\n/g, "<br>");
@@ -81,7 +90,6 @@ document.getElementById('delete-btn').addEventListener('click', async () => {
 
 document.getElementById('post-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-
     const postId = new URLSearchParams(window.location.search).get('postId');
     const formData = new FormData(event.target);
     const postData = {
@@ -92,6 +100,5 @@ document.getElementById('post-form').addEventListener('submit', async (event) =>
         },
         body: formData.get('post-content'),
     };
-
     await updatePost(postData, postId);
 });
