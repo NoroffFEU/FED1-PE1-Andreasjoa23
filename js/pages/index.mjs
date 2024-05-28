@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     } catch (error) {
         console.error('Error:', error);
     }
+    
     function populateCarousel(posts) {
         const carouselContainer = document.querySelector('.carousel-container');
         const slides = carouselContainer.querySelectorAll('.carousel-slide');
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             media.src = post.media.url;
             media.alt = post.media.alt;
 
-            const title = document.createElement("h1");
+            const title = document.createElement("h2");
             title.classList.add("post-title");
             title.textContent = post.title;
 
