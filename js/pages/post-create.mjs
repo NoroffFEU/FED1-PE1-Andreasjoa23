@@ -1,10 +1,10 @@
-import { fetchData } from "../components/fetch.mjs";
+import { showLoader, hideLoader } from '../components/loader.mjs';
+import { fetchData } from '../components/fetch.mjs';
 
 document.addEventListener("DOMContentLoaded", function() {
     const postForm = document.getElementById('post-form');
     const cancelButton = document.getElementById('cancel-button');
     const postImageURL = document.getElementById('post-image-url');
-
 
     postImageURL.addEventListener('change', updateImagePreview);
 
@@ -21,8 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
             body: formData.get('post-content'),
         };
 
+        showLoader();
+        
         try {
-            const response = await fetchData(`https://v2.api.noroff.dev/blog/posts/Alfred`, 'POST', newPostData);
+            const response = await fetchData('https://v2.api.noroff.dev/blog/posts/Alfred', 'POST', newPostData);
             const newPostId = response.id;
 
             if (newPostId) {
@@ -39,8 +41,11 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (error) {
             console.error('Error creating post:', error);
             alert('Failed to create post. Please try again.');
+        } finally {
+            hideLoader();
         }
     });
+
     cancelButton.addEventListener('click', () => {
         postForm.reset();
     });

@@ -1,6 +1,9 @@
 import { fetchData } from "../components/fetch.mjs";
+import { showLoader, hideLoader } from '../components/loader.mjs';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+    showLoader();
+
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
 
@@ -15,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("No post ID found in URL parameters.");
     }
+
+    hideLoader();
+
     document.getElementById('post-image-url').addEventListener('input', updateImagePreview);
 });
 
@@ -79,7 +85,7 @@ document.getElementById('post-form').addEventListener('submit', async (event) =>
 
 document.getElementById('delete-btn').addEventListener('click', async () => {
     const postId = new URLSearchParams(window.location.search).get('postId');
-    if (confirm('Are you sure you wanna terminator this post?')) {
+    if (confirm('Are you sure you want to delete this post?')) {
         await deletePost(postId);
     }
 });

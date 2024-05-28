@@ -1,4 +1,8 @@
+import { showLoader, hideLoader } from '../components/loader.mjs';
+
 document.addEventListener("DOMContentLoaded", function() {
+    showLoader();
+
     const post = JSON.parse(localStorage.getItem('post'));
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -6,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayPost(post, userInfo);
     } else {
         console.error('No post data found in local storage');
+        hideLoader();
     }
 
     function displayPost(post, userInfo) {
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const creatorDetails = document.createElement("div");
         creatorDetails.classList.add("creator-details");
 
-        creatorDetails.append(author,created,updated);
+        creatorDetails.append(author, created, updated);
         postContainer.append(title, media, creatorDetails, body);
 
         if (userInfo) {
@@ -52,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             postContainer.appendChild(editButton);
         }
+
+        hideLoader();
     }
 
     function formatDate(dateString) {

@@ -1,3 +1,5 @@
+import { showLoader, hideLoader } from '../components/loader.mjs';
+
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             errorContainer.innerHTML = '<p>Email and password are required.</p>';
             return;
         }
-
+        showLoader();
         try {
             const response = await fetch("https://v2.api.noroff.dev/auth/login", {
                 method: 'POST',
@@ -54,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error:', error);
             errorContainer.innerHTML = `<p>${error.message}</p>`;
+        } finally {
+            hideLoader();
         }
     });
 });

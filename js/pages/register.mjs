@@ -1,3 +1,5 @@
+import { showLoader, hideLoader } from '../components/loader.mjs';
+
 document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById('registerForm');
     const emailInput = document.getElementById('email');
@@ -6,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmPasswordInput = document.getElementById('confirm-password');
     const errorContainer = document.getElementById('error-container');
     const showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+    const eyeIcon = document.getElementById('eyeIcon');
 
     registerForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -21,14 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput.value.length < 8) {
             errors.push('Password must be at least 8 characters long.');
         }
-
         if (passwordInput.value !== confirmPasswordInput.value) {
             errors.push('Passwords do not match.');
         }
+
         if (errors.length > 0) {
             errorContainer.innerHTML = '<ul>' + errors.map(error => `<li>${error}</li>`).join('') + '</ul>';
         } else {
             errorContainer.innerHTML = '';
+            showLoader();
 
             var formData = {
                 name: usernameInput.value,
@@ -55,18 +59,21 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch((error) => {
                 console.error('error: ', error);
+            })
+            .finally(() => {
+                hideLoader();
             });
         }
     });
 
-const eyeIcon = document.getElementById('eyeIcon');
-showPasswordCheckbox.addEventListener('change', function() {
-    const passwordType = showPasswordCheckbox.checked ? 'text' : 'password';
-    passwordInput.type = passwordType;
-    confirmPasswordInput.type = passwordType;
-    eyeIcon.classList.toggle('fa-eye-slash', !showPasswordCheckbox.checked);
-    eyeIcon.classList.toggle('fa-eye', showPasswordCheckbox.checked);
-});
+    showPasswordCheckbox.addEventListener('change', function() {
+        const passwordType = showPasswordCheckbox.checked ? 'text' : 'password';
+        passwordInput.type = passwordType;
+        confirmPasswordInput.type = passwordType;
+        eyeIcon.classList.toggle('fa-eye-slash', !showPasswordCheckbox.checked);
+        eyeIcon.classList.toggle('fa-eye', showPasswordCheckbox.checked);
+    });
+
     function validateEmail(email) {
         const emailRegex = /^[^\s@]+@stud\.noroff\.no$/;
         return emailRegex.test(email);
@@ -76,13 +83,8 @@ showPasswordCheckbox.addEventListener('change', function() {
         const usernameRegex = /^[a-zA-Z0-9_]{6,}$/;
         return usernameRegex.test(username);
     }
-
-    showPasswordCheckbox.addEventListener('change', function() {
-        const passwordType = showPasswordCheckbox.checked ? 'text' : 'password';
-        passwordInput.type = passwordType;
-        confirmPasswordInput.type = passwordType;
-    });
 });
+
 function redirectToLogin() {
     window.location.href = './login.html';
 }

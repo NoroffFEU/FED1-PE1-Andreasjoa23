@@ -1,17 +1,21 @@
+import { showLoader, hideLoader } from '../components/loader.mjs';
 import { fetchData } from '../components/fetch.mjs';
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
+        showLoader();
+
         const data = await fetchData('https://v2.api.noroff.dev/blog/posts/Alfred', 'GET', null, false);
         console.log("Blog Posts", data);
 
         populateCarousel(data);
         populateBlogList(data);
-
     } catch (error) {
         console.error('Error:', error);
+    } finally {
+        hideLoader();
     }
-    
+
     function populateCarousel(posts) {
         const carouselContainer = document.querySelector('.carousel-container');
         const slides = carouselContainer.querySelectorAll('.carousel-slide');
@@ -31,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 event.stopPropagation();
             });
         });
-        
+
         slides[0].style.display = 'block';
 
         const prevButton = document.querySelector('.prev-button');
@@ -54,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             slides[currentIndex].style.display = 'block';
         }
     }
+
     function populateBlogList(posts) {
         const movieListContainer = document.getElementById("movieList");
 
@@ -97,7 +102,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                 });
                 postCard.appendChild(editButton);
             }
-
             movieListContainer.appendChild(postCard);
         });
     }
