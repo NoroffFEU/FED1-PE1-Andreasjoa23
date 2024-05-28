@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 function populateForm(postData) {
     document.getElementById("post-title").value = postData.title;
-    document.getElementById("post-content").value = postData.body;
+    document.getElementById("post-content").innerHTML = postData.body.replace(/\n/g, "<br>");
     document.getElementById("post-image-url").value = postData.media.url;
     document.getElementById("post-image-alt").value = postData.media.alt;
     updateImagePreview();

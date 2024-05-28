@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
         title.classList.add("post-title");
         title.textContent = post.title;
 
-        const body = document.createElement("p");
+        const body = document.createElement("div");
         body.classList.add("post-body");
-        body.textContent = post.body;
+        body.innerHTML = post.body.replace(/\n/g, "<br>");
 
         const author = document.createElement("p");
         author.classList.add("post-author");

@@ -36,8 +36,9 @@
 .post-body {
     font-size: 1.8em;
     line-height: 1.8;
-    width: 70%;
+    width: 60%;
     margin: 20px auto;
+    text-align: left;
 }
 
 .edit-button {
